@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaaS Dashboard — Precision Infomatic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =================================================================
+     LOGIN SCREEN
+================================================================== -->
+  <div id="login-screen">
+    <div class="login-brand-panel">
+      <div class="dot-grid"></div>
+      <div class="panel-top">
+        <div class="brand-mark">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="https://career.precisionit.co.in/images/precision-icon.svg" alt="Precision Informatics Logo">
+          </span>
+          <div class="brand-text">
+            <div class="name">MaaS Dashboard</div>
+            <div class="company">Precision Infomatic Pvt. Ltd.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-mid">
+        <h1>Monitoring as a Service</h1>
+        <p class="lede">
+          Real-time visibility into your infrastructure, applications, and critical services — all in one secure
+          monitoring portal.
+        </p>
+      </div>
+      <div class="panel-bottom">© <span id="year"></span> Precision Infomatic Pvt. Ltd. — Monitoring as a Service
+      </div>
+    </div>
+
+    <div class="login-form-panel">
+      <div class="login-form-wrap">
+        <div class="brand-mark mobile-brand">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="https://career.precisionit.co.in/images/precision-icon.svg" alt="Precision Informatics Logo">
+          </span>
+          <div class="brand-text">
+            <div class="name">MaaS Dashboard</div>
+            <div class="company">Monitoring as a Service</div>
+          </div>
+        </div>
+
+        <h2>Welcome back</h2>
+        <p class="sub">Sign in to access your monitoring dashboard.</p>
+
+        <div class="form-alert" id="form-alert">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:1px">
+            <path
+              d="M12 9v4M12 17h.01M10.29 3.86l-8.18 14.18A2 2 0 0 0 4 21h16a2 2 0 0 0 1.89-2.96L13.71 3.86a2 2 0 0 0-3.42 0Z"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span id="form-alert-text">Invalid email or password. Please try again.</span>
+        </div>
+
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="email">Email or username</label>
+            <div class="input-shell">
+              <input type="text" id="email" placeholder="you@company.com" autocomplete="username">
+            </div>
+            <div class="field-error" id="email-error">Enter your email or username.</div>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-shell">
+              <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+              <button type="button" class="toggle-visibility" id="toggle-pw" aria-label="Show password">
+                <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" stroke="currentColor" stroke-width="1.7" />
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7" />
+                </svg>
+              </button>
+            </div>
+            <div class="field-error" id="password-error">Enter your password.</div>
+          </div>
+
+          <div class="form-row-between">
+            <label class="remember-me">
+              <input type="checkbox" id="remember-me">
+              Remember me
+            </label>
+            <a href="#" class="forgot-link" id="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="button" class="btn-primary" id="login-btn">
+            <span id="login-btn-text">Sign in</span>
+          </button>
+        </form>
+        <button type="button" class="btn-primary" id="demo-fill-btn"
+          style="margin-top:10px; background:var(--surface); color:var(--accent); border:1px solid var(--border-strong);">
+          Use demo account
+        </button>
+
+        <div class="login-footnote">
+          By signing in you agree to Precision Infomatic's monitoring terms of use and acceptable-use policy. Need
+          access? Contact your account engineer.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================================================================
+     APP SHELL
+================================================================== -->
+  <div id="app-screen" class="hidden">
+    <div class="status-strip"></div>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle-btn" id="sidebar-toggle" aria-label="Toggle sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <div class="brand-mark">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="https://career.precisionit.co.in/images/precision-icon.svg" alt="Precision Informatics Logo">
+          </span>
+          <div class="brand-text">
+            <div class="name">MaaS Dashboard</div>
+            <div class="company">Precision Infomatic</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="theme-toggle" role="group" aria-label="Theme">
+          <button id="theme-light-btn" aria-label="Light mode">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8" />
+              <path
+                d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </button>
+          <button id="theme-dark-btn" aria-label="Dark mode">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="1.8"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="profile-menu-wrap">
+          <button class="profile-trigger" id="profile-trigger">
+            <div class="avatar" id="avatar-initials">MY</div>
+            <div class="who">
+              <div class="n" id="profile-name">Mohamed Yaseen</div>
+              <div class="r" id="profile-role">Customer · Precision Infomatic</div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="dropdown-menu" id="profile-dropdown">
+            <div class="dd-head">
+              <div class="n" id="dd-name">Mohamed Yaseen</div>
+              <div class="e" id="dd-email">demo@precisionit.co.in</div>
+            </div>
+            <a href="#" data-route="profile"><svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                <path d="M20 21a8 8 0 1 0-16 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.7" />
+              </svg>My profile</a>
+            <a href="#" data-route="settings"><svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7" />
+                <path
+                  d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 8.96 19.34a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.66 8.96a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1.04-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9a1.7 1.7 0 0 0 1.56 1.04H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1.04Z"
+                  stroke="currentColor" stroke-width="1.4" />
+              </svg>Settings</a>
+            <button class="danger" id="logout-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>Log out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="shell-body">
+      <div class="scrim" id="scrim"></div>
+
+      <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-scroll">
+          <div class="nav-group-label">Monitor</div>
+          <button class="nav-item active" data-route="dashboard">
+            <span class="ic ic-chip ic-blue"><svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                <path d="M3 13h4v8H3zM10 8h4v13h-4zM17 3h4v18h-4z" stroke="currentColor" stroke-width="1.7"
+                  stroke-linejoin="round" />
+              </svg></span>
+            <span class="nav-label">Dashboard</span>
+          </button>
+
+          <button class="nav-item" data-route="assistant">
+            <span class="ic ic-chip ic-violet"><svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3a8 8 0 0 0-8 8v4a3 3 0 0 0 3 3h2l2 3 2-3h2a3 3 0 0 0 3-3v-4a8 8 0 0 0-8-8Z"
+                  stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+                <path d="M9 11h.01M15 11h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+              </svg></span>
+            <span class="nav-label">MaaS Assistant</span>
+          </button>
+
+          <div class="nav-divider"></div>
+          <div class="nav-group-label">Account</div>
+          <button class="nav-item" data-route="profile">
+            <span class="ic ic-chip ic-blue"><svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                <path d="M20 21a8 8 0 1 0-16 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.7" />
+              </svg></span>
+            <span class="nav-label">My profile</span>
+          </button>
+          <button class="nav-item" data-route="settings">
+            <span class="ic ic-chip ic-violet"><svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7" />
+                <path
+                  d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 8.96 19.34a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.66 8.96a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1.04-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9a1.7 1.7 0 0 0 1.56 1.04H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1.04Z"
+                  stroke="currentColor" stroke-width="1.4" />
+              </svg></span>
+            <span class="nav-label">Settings</span>
+          </button>
+          <button class="nav-item" id="sidebar-logout">
+            <span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg></span>
+            <span class="nav-label">Log out</span>
+          </button>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <div class="content-inner" id="content-inner">
+          <!-- injected per-route -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
